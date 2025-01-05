@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: var(--tw-color-gh-light-bg);
+  --color-text: var(--tw-color-gh-light-text);
+  --color-muted: var(--tw-color-gh-light-muted);
+  --color-border: var(--tw-color-gh-light-border);
+  --color-accent: var(--tw-color-gh-light-accent);
+  --color-canvas: var(--tw-color-gh-light-canvas);
+  --color-success: var(--tw-color-gh-light-success);
+  --color-danger: var(--tw-color-gh-light-danger);
+  --color-warning: var(--tw-color-gh-light-warning);
+  --color-info: var(--tw-color-gh-light-info);
+  --color-done: var(--tw-color-gh-light-done);
+  color-scheme: light;
+}
+
+.dark {
+  --color-bg: var(--tw-color-gh-dark-bg);
+  --color-text: var(--tw-color-gh-dark-text);
+  --color-muted: var(--tw-color-gh-dark-muted);
+  --color-border: var(--tw-color-gh-dark-border);
+  --color-accent: var(--tw-color-gh-dark-accent);
+  --color-canvas: var(--tw-color-gh-dark-canvas);
+  --color-success: var(--tw-color-gh-dark-success);
+  --color-danger: var(--tw-color-gh-dark-danger);
+  --color-warning: var(--tw-color-gh-dark-warning);
+  --color-info: var(--tw-color-gh-dark-info);
+  --color-done: var(--tw-color-gh-dark-done);
+  color-scheme: dark;
+}
+
+.infrastructure-bg {
+  background-image: radial-gradient(circle at 1px 1px,
+      #2563eb 1px,
+      transparent 0);
+  background-size: 40px 40px;
+}
+
+.data-stream {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-stream::before {
+  content: "01001110 01001111 01000100 01000101";
+  position: absolute;
+  font-family: "IBM Plex Mono", monospace;
+  white-space: nowrap;
+  animation: dataFlow 15s linear infinite;
+  opacity: 0.1;
+}
+
+.glass-effect {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+@keyframes dataFlow {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Theme transition styles */
+*,
+::before,
+::after {
+  transition: transform 0.3s ease,
+    background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    fill 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Theme switch animation */
+.theme-switch-enter-active {
+  animation: theme-switch-in 0.5s ease-out;
+}
+
+.theme-switch-leave-active {
+  animation: theme-switch-out 0.5s ease-in;
+}
+
+@keyframes theme-switch-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateY(10px) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes theme-switch-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize performance by excluding specific properties from transition */
+.infrastructure-bg,
+.glass-effect,
+.theme-icon-enter-active,
+.theme-icon-leave-active,
+.theme-icon-enter-from,
+.theme-icon-leave-to {
+  transition: none;
+}
+
+/* Remove transition on page load */
+.preload * {
+  transition: none !important;
+}
+
+/* Add ripple effect to buttons */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, currentColor 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}

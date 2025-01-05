@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .nav-link {
+    @apply text-gh-light-muted dark:text-gh-dark-muted hover:text-gh-light-text dark:hover:text-gh-dark-text transition-colors;
+  }
+
+  .mobile-nav-link {
+    @apply block py-2 text-gh-light-muted dark:text-gh-dark-muted hover:text-gh-light-text dark:hover:text-gh-dark-text transition-colors;
+  }
+}
