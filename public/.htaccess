@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !(\.(png|jp?g|webp|gif|jpeg|css|svg|js|ico|ttf|mp4))$
+RewriteRule ^(.*)$ index.html [QSA,L]
